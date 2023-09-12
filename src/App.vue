@@ -190,7 +190,8 @@ footer {
 }
 
 @media (width < 1330px) {
-  .footer__content {
+  .footer__content,
+  header nav {
     padding: 60px 20px;
   }
 }

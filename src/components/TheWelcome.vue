@@ -97,7 +97,10 @@ const calculateCount = (elId = '') => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  position: relative;
+  margin-top: 138px;
+  margin-bottom: 146px;
 }
 .welcome__head .head_text {
   display: flex;
@@ -149,18 +152,23 @@ const calculateCount = (elId = '') => {
 .welcome__head .head_image {
   width: 583.173px;
   height: 554.143px;
+  transform: scale(1.5);
+  z-index: -1;
   flex-shrink: 0;
   /* background-image: url('./icons/welcome_image.png'); */
   background-position: center;
-  background-size: 115%;
+  background-size: 100%;
   background-repeat: no-repeat;
+  position: absolute;
+  right: -20px;
+  top: -138px;
 }
 
 .welcome__body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 60px;
   margin-bottom: 120px;
 }

@@ -29,8 +29,7 @@ aside,
 nav,
 footer,
 header,
-section,
-main {
+section {
   display: block;
 }
 
