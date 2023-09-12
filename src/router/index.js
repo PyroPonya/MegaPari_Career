@@ -4,7 +4,8 @@ import CareersView from '../views/CareersView.vue';
 import CareerItemView from '../views/CareerItemView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',
