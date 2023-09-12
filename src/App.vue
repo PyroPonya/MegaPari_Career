@@ -40,10 +40,10 @@ import MegapariLogo from './assets/LOGO_MEGAPARI.svg';
           </div>
           <div class="contacts__bottom">
             <div class="contacts__linkedin">
-              <a href="#"> LinkedIn </a>
+              <a href="https://www.linkedin.com/company/megapari/"> LinkedIn </a>
             </div>
             <div class="contacts__headhunter">
-              <a href="#"> HeadHunter </a>
+              <a href="https://hh.ru/employer/5788049?from=share_ios"> HeadHunter </a>
             </div>
           </div>
         </div>
