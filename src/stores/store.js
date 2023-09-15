@@ -380,7 +380,7 @@ export const useGlobalStore = defineStore('Store', () => {
     },
   ]);
   // const doubleCount = computed(() => count.value * 2)
-  // function increment() {
+  // function removeElement(side, position) {
   //   count.value++
   // }
 

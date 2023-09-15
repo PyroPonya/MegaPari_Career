@@ -41,11 +41,8 @@ const calculateCount = (elId = '') => {
         <div class="text_title">Info about us</div>
         <div class="text_content">
           MegaPari is a prominent iGaming brand that offers a multi-modal platform for
-          online gambling. In Europe, the Middle East, Latin America and South Africa,
-          MegaPari has experienced rapid growth since its launch In 2019. As an iGaming
-          brand, MegaPari withstood stiff competition in the industry and carved a
-          reputation that made it stand out. Join MegaPari and be part of a team with an
-          ambitious mission to revolutionize the iGaming industry.
+          online gambling. In Europe, the Middle East, Latin America, Asia and Africa,
+          MegaPari has experienced rapid growth since its launch In 2019.
         </div>
       </div>
     </div>
