@@ -22,7 +22,6 @@ const fieldValidation = ref({
   message: '',
 });
 const checkFields = () => {
-  console.log(terms.value);
   if (!terms.value) {
     terms_validation.value = false;
     setTimeout(() => {
@@ -101,7 +100,6 @@ const throwItOnTheGround = (data) => {
     terms.value = false;
     terms_validation.value = true;
   } else {
-    terms_validation.value = false;
     console.log('=ABORTED=');
     return false;
   }
