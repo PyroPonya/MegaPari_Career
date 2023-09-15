@@ -3,6 +3,8 @@ import { ref } from 'vue';
 const props = defineProps(['localData']);
 
 const terms = ref(false);
+const terms_validation = ref(true);
+const request_succ = ref(false);
 const btnDisabled = ref(true);
 
 const localBlob = ref({
@@ -20,6 +22,15 @@ const fieldValidation = ref({
   message: '',
 });
 const checkFields = () => {
+  console.log(terms.value);
+  if (!terms.value) {
+    terms_validation.value = false;
+    setTimeout(() => {
+      terms_validation.value = true;
+    }, 3000);
+  } else {
+    terms_validation.value = true;
+  }
   Object.keys(fieldValidation.value).map((el) => {
     localBlob.value[el] == ''
       ? (fieldValidation.value[el] = 'false')
@@ -30,6 +41,12 @@ const checkFields = () => {
   0
     ? (btnDisabled.value = true)
     : (btnDisabled.value = false);
+};
+const requesPopup = () => {
+  request_succ.value = true;
+  setTimeout(() => {
+    request_succ.value = false;
+  }, 3000);
 };
 //
 const logger = (el) => console.log(el);
@@ -73,6 +90,7 @@ const throwItOnTheGround = (data) => {
       })
       .catch((err) => console.log(err));
 
+    requesPopup();
     localBlob.value = {
       name: '',
       email: '',
@@ -80,7 +98,10 @@ const throwItOnTheGround = (data) => {
       country: '',
       message: '',
     };
+    terms.value = false;
+    terms_validation.value = true;
   } else {
+    terms_validation.value = false;
     console.log('=ABORTED=');
     return false;
   }
@@ -122,7 +143,10 @@ const throwItOnTheGround = (data) => {
       v-model="localBlob.message"
     ></textarea>
     <div class="form_terms">
-      <div class="terms_box" @click="terms = !terms">
+      <div
+        :class="[terms_validation ? '' : 'terms_box-error', 'terms_box']"
+        @click="terms = !terms"
+      >
         <div class="terms_box-inner" :style="{ display: terms ? 'flex' : 'none' }"></div>
       </div>
       <div class="terms_text" @click="terms = !terms">
@@ -140,8 +164,20 @@ const throwItOnTheGround = (data) => {
       Submit
     </div>
 
-    <div>
+    <!-- <div>
       {{ props.localData }}
+    </div> -->
+    <div
+      class="popup popup_terms"
+      :style="{ display: terms_validation ? 'none' : 'flex' }"
+    >
+      You have to accept terms
+    </div>
+    <div
+      class="popup popup_notification"
+      :style="{ display: request_succ ? 'flex' : 'none' }"
+    >
+      Success!
     </div>
   </div>
 </template>
@@ -156,6 +192,19 @@ const throwItOnTheGround = (data) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.popup {
+  /* display: flex; */
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  border-radius: 40px;
+  border: 5px solid #ff0e1b;
+  background-color: black;
+  /* width: 100vw;
+  height: 100vh; */
 }
 .form_title {
   color: #fff;
@@ -232,6 +281,9 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.terms_box-error {
+  border-color: #ff0e1b;
 }
 .terms_box-inner {
   /* display: none; */

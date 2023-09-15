@@ -17,7 +17,7 @@ const goToTest = () => {
 
 <template>
   <div class="item__container">
-    Single Career Item: " {{ id_position + ' => ' + id_vacancy }} "
+    <!-- Single Career Item: " {{ id_position + ' => ' + id_vacancy }} "
     <br />
     {{
       Object.keys(
@@ -26,7 +26,7 @@ const goToTest = () => {
           .list.filter((el) => el.id == id_vacancy)[0]
       )
     }}
-    <br />
+    <br /> -->
 
     <div class="item">
       <div class="item_title">
