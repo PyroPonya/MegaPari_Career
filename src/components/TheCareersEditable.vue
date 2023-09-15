@@ -5,8 +5,10 @@ const store = useGlobalStore();
 const props = defineProps(['id_position']);
 // Locker start
 const masterkey = 'MegaPari';
-// const lockpick = ref('');
-const lockpick = ref('MegaPari');
+const lockpick = ref('');
+// const lockpick = ref('MegaPari');
+const displayAdd = ref(false);
+// const displayAdd = ref(true);
 const restore_msg = ref(false);
 const save_msg = ref(false);
 // Locker end
@@ -70,17 +72,23 @@ const createData = ref({
   </div>
   <!-- else -->
   <div v-else class="career__container">
-    <div class="popup_add">
-      Add
-      <div class="select_side">select_side</div>
-      <div class="select_position">select_position</div>
-      <div class="descriprion">descriprion</div>
-      <div class="tasks">tasks</div>
-      <div class="requirements">requirements</div>
-      <div class="format">format</div>
-      <div class="controls">
-        <div class="btn locker cancel">Cancel</div>
-        <div class="btn locker submit">Sumbit</div>
+    <div
+      class="container_add"
+      :style="{ display: displayAdd ? 'flex' : 'none' }"
+      @click.self="displayAdd = false"
+    >
+      <div class="popup_add">
+        Add
+        <div class="select_side">select_side</div>
+        <div class="select_position">select_position</div>
+        <div class="descriprion">descriprion</div>
+        <div class="tasks">tasks</div>
+        <div class="requirements">requirements</div>
+        <div class="format">format</div>
+        <div class="controls">
+          <div class="btn locker cancel">Cancel</div>
+          <div class="btn locker submit">Sumbit</div>
+        </div>
       </div>
     </div>
     <div class="controls">
@@ -94,7 +102,7 @@ const createData = ref({
       <div class="btn locker" @click="postData()">Save Changes</div>
     </div>
     <div class="career_title">All&nbsp;jobs</div>
-    <div class="locker btn">Add Vacancy</div>
+    <div class="locker btn" @click="displayAdd = true">Add Vacancy</div>
     <div class="id_list">
       <RouterLink
         :to="'/careers_editable/all'"
@@ -311,11 +319,24 @@ const createData = ref({
   font-weight: 700;
   line-height: normal;
 }
-.popup_add {
+.container_add {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  z-index: 10;
+  background: rgba(34, 36, 53, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.popup_add {
+  /* position: fixed; */
   width: 90vw;
   min-height: 50vh;
-  z-index: 10;
+  /* z-index: 10; */
   /* top: 10%; */
   display: flex;
   flex-direction: column;
