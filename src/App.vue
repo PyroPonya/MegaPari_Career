@@ -1,6 +1,28 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
 import MegapariLogo from './assets/LOGO_MEGAPARI.svg';
+import { useGlobalStore } from '@/stores/store';
+const store = useGlobalStore();
+const getData = () => {
+  let req = new XMLHttpRequest();
+
+  req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+      console.log(req.responseText);
+      const data = JSON.parse(req.responseText);
+      store.data = data.record.sample;
+    }
+  };
+
+  req.open('GET', 'https://api.jsonbin.io/v3/b/65059fc5e4033326cbd8ad8a/latest', true);
+  req.setRequestHeader(
+    'X-Master-Key',
+    '$2b$10$7PeQE7cb5t/UZF9M9RKj7ujLQaSHGFA6lsheiMXe0d81mUVgYyVqi'
+  );
+  req.send();
+  return true;
+};
+getData();
 </script>
 
 <template>
@@ -195,15 +217,31 @@ footer {
     padding: 60px 20px;
   }
 }
-@media (width < 700px) {
+@media (width < 900px) {
+  .footer__content,
+  header nav {
+    padding: 30px 20px;
+  }
   .footer__content {
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
   }
   .header__content {
     flex-direction: column;
     padding: 10px 0;
+  }
+  .contacts__bottom {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer__contacts {
+    width: 100%;
   }
 }
 </style>

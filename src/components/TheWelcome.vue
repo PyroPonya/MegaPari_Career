@@ -279,6 +279,16 @@ const calculateCount = (elId = '') => {
     align-self: center;
   }
 }
+@media (width < 900px) {
+  .welcome__head {
+    margin-top: 38px;
+    margin-bottom: 26px;
+  }
+  .welcome__body {
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+}
 @media (width < 700px) {
   .welcome__body .body_image {
     width: 100%;

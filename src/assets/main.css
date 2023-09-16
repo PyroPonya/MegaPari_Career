@@ -26,3 +26,13 @@ main {
   align-items: center;
   justify-content: center;
 }
+/* dropdown */
+.p-dropdown-panel {
+  background-color: black;
+}
+.p-dropdown-item:hover {
+  background-color: rgb(56, 56, 56);
+}
+div > .p-icon {
+  margin-left: 10px;
+}
