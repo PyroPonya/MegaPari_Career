@@ -45,23 +45,23 @@ const filterDisplay = (filterId = '') => {
 };
 
 // Dropdown Selectors + localData
-// const localData = ref({
-//   side: '',
-//   position: '',
-//   description: '',
-//   tasks: [],
-//   requirements: [],
-//   format: '',
-// });
 const localData = ref({
   side: '',
-  position: 'First Artisian',
-  description:
-    'JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc ',
-  tasks: ['Task1', 'Task2', 'Task3'],
-  requirements: ['Req1', 'Req2', 'Req3'],
-  format: 'Format as is',
+  position: '',
+  description: '',
+  tasks: [],
+  requirements: [],
+  format: '',
 });
+// const localData = ref({
+//   side: '',
+//   position: 'First Artisian',
+//   description:
+//     'JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc JobDesc ',
+//   tasks: ['Task1', 'Task2', 'Task3'],
+//   requirements: ['Req1', 'Req2', 'Req3'],
+//   format: 'Format as is',
+// });
 const sideList = ref(store.data.map((el) => el.id));
 const getPositions = (side) => {
   const positionList = ref();
@@ -85,14 +85,14 @@ const addCancel = () => {
 };
 const addSubmit = () => {
   console.log(localData.value);
-  // localData.value = {
-  //   side: '',
-  //   position: '',
-  //   description: '',
-  //   tasks: [],
-  //   requirements: [],
-  //   format: '',
-  // };
+  localData.value = {
+    side: '',
+    position: '',
+    description: '',
+    tasks: [],
+    requirements: [],
+    format: '',
+  };
   store.data.map((el) => {
     if (el.id == localData.value.side) {
       console.log('el.id: ', el.id);
@@ -108,7 +108,7 @@ const addSubmit = () => {
       console.log(store.value);
     }
   });
-  // displayAdd.value = false;
+  displayAdd.value = false;
 };
 
 // Store management
