@@ -1,19 +1,29 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useCookies } from "vue3-cookies";
 import Dropdown from 'primevue/dropdown';
 import Chips from 'primevue/chips';
 import InputText from 'primevue/inputtext';
 import { useGlobalStore } from '@/stores/store';
 const store = useGlobalStore();
 const props = defineProps(['id_position']);
-// Locker start
+// Locker start + cookie
+const { cookies } = useCookies();
 const masterkey = 'MegaPari';
-const lockpick = ref('');
+const lockpick = ref(cookies.get('access') || '');
 // const lockpick = ref('MegaPari');
 const displayAdd = ref(false);
 // const displayAdd = ref(true);
 const restore_msg = ref(false);
 const save_msg = ref(false);
+watch(
+  () => lockpick.value,
+  (val) => {
+    if(val == masterkey) {
+      cookies.set('access', 'MegaPari');
+    };
+  }
+);
 // Locker end
 const calculateCount = (elId = '') => {
   let counter = 0;
