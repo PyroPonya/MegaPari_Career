@@ -166,6 +166,8 @@ const filterDisplay = (filterId = '') => {
 .career_id .id_el .el_arrow {
   height: 30px;
   width: 30px;
+  min-width: 30px;
+  min-height: 30px;
   background-image: url('./icons/Arrow_whiteOnRed.svg');
   background-position: center;
   background-size: contain;

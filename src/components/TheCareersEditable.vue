@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { useCookies } from "vue3-cookies";
+import { useCookies } from 'vue3-cookies';
 import Dropdown from 'primevue/dropdown';
 import Chips from 'primevue/chips';
 import InputText from 'primevue/inputtext';
@@ -19,9 +19,9 @@ const save_msg = ref(false);
 watch(
   () => lockpick.value,
   (val) => {
-    if(val == masterkey) {
+    if (val == masterkey) {
       cookies.set('access', 'MegaPari');
-    };
+    }
   }
 );
 // Locker end
@@ -385,6 +385,8 @@ const postData = () => {
 .career_id .id_el .el_arrow {
   height: 30px;
   width: 30px;
+  min-width: 30px;
+  min-height: 30px;
   background-image: url('./icons/Arrow_whiteOnRed.svg');
   background-position: center;
   background-size: cover;
