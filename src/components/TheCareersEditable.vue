@@ -85,14 +85,6 @@ const addCancel = () => {
 };
 const addSubmit = () => {
   console.log(localData.value);
-  localData.value = {
-    side: '',
-    position: '',
-    description: '',
-    tasks: [],
-    requirements: [],
-    format: '',
-  };
   store.data.map((el) => {
     if (el.id == localData.value.side) {
       console.log('el.id: ', el.id);
@@ -109,6 +101,14 @@ const addSubmit = () => {
     }
   });
   displayAdd.value = false;
+  localData.value = {
+    side: '',
+    position: '',
+    description: '',
+    tasks: [],
+    requirements: [],
+    format: '',
+  };
 };
 
 // Store management
