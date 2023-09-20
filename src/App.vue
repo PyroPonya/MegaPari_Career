@@ -4,22 +4,17 @@ import MegapariLogo from './assets/LOGO_MEGAPARI.svg';
 import { useGlobalStore } from '@/stores/store';
 const store = useGlobalStore();
 const getData = () => {
-  let req = new XMLHttpRequest();
-
-  req.onreadystatechange = () => {
-    if (req.readyState == XMLHttpRequest.DONE) {
-      console.log(req.responseText);
-      const data = JSON.parse(req.responseText);
-      store.data = data.record.sample;
-    }
-  };
-
-  req.open('GET', 'https://api.jsonbin.io/v3/b/65059fc5e4033326cbd8ad8a/latest', true);
-  req.setRequestHeader(
-    'X-Master-Key',
-    '$2b$10$7PeQE7cb5t/UZF9M9RKj7ujLQaSHGFA6lsheiMXe0d81mUVgYyVqi'
-  );
-  req.send();
+  fetch(
+    'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs'
+  )
+    .then((response) => response.text())
+    .then((response) => {
+      const data = JSON.parse(response);
+      store.data = data.payload;
+      console.log('response: ', JSON.parse(response));
+    })
+    .catch((err) => console.log(err));
+  // console.log(store.data);
   return true;
 };
 getData();

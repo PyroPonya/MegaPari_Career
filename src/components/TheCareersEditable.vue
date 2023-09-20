@@ -121,51 +121,60 @@ const removeEl = (side, position) => {
     }
   });
 };
+// remote data store management start
 const getData = () => {
-  let req = new XMLHttpRequest();
-
-  req.onreadystatechange = () => {
-    if (req.readyState == XMLHttpRequest.DONE) {
-      console.log(req.responseText);
-      const data = JSON.parse(req.responseText);
-      store.data = data.record.sample;
-    }
-  };
-
-  req.open('GET', 'https://api.jsonbin.io/v3/b/65059fc5e4033326cbd8ad8a/latest', true);
-  req.setRequestHeader(
-    'X-Master-Key',
-    '$2b$10$7PeQE7cb5t/UZF9M9RKj7ujLQaSHGFA6lsheiMXe0d81mUVgYyVqi'
-  );
-  req.send();
+  fetch(
+    'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs'
+  )
+    .then((response) => response.text())
+    .then((response) => {
+      const data = JSON.parse(response);
+      store.data = data.payload;
+      console.log('response: ', JSON.parse(response));
+    })
+    .catch((err) => console.log(err));
+  // console.log(store.data);
   restore_msg.value = true;
   setTimeout(() => {
     restore_msg.value = false;
   }, 3000);
   return true;
 };
-const postData = () => {
-  let req = new XMLHttpRequest();
 
-  req.onreadystatechange = () => {
-    if (req.readyState == XMLHttpRequest.DONE) {
-      console.log(req.responseText);
-    }
+const postData = () => {
+  const myHeaders = new Headers();
+  myHeaders.append('accept', 'application/json');
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('X-Client-Ip', 'any');
+  myHeaders.append('X-Visitor-Id', 'dont_care');
+
+  const options = {
+    method: 'POST',
+    headers: myHeaders,
+    body: JSON.stringify({ payload: store.data }),
   };
-  req.open('PUT', 'https://api.jsonbin.io/v3/b/65059fc5e4033326cbd8ad8a', true);
-  req.setRequestHeader('Content-Type', 'application/json');
-  req.setRequestHeader(
-    'X-Master-Key',
-    '$2b$10$7PeQE7cb5t/UZF9M9RKj7ujLQaSHGFA6lsheiMXe0d81mUVgYyVqi'
+
+  fetch(
+    'https://pyroproxy.herokuapp.com/https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
+    options
   );
-  const data = JSON.stringify(store.data);
-  req.send('{"sample":' + data + '}');
+  fetch(
+    'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
+    options
+  )
+    .then((response) => response.text())
+    .then((response) => {
+      console.log('response: ' + response);
+    })
+    .catch((err) => console.log(err));
+
   save_msg.value = true;
   setTimeout(() => {
     save_msg.value = false;
   }, 3000);
   return true;
 };
+// remote data store management end
 </script>
 
 <template>
