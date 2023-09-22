@@ -54,8 +54,8 @@ const throwItOnTheGround = (data) => {
   checkFields();
   if (!btnDisabled.value && terms.value) {
     const dataBlob = {
-      // tEmail: 'alexander.front@megapari.com',
-      tEmail: 'shmelyshichka@yahoo.com',
+      tEmail: 'elena.hr@megapari.com',
+      // tEmail: 'shmelyshichka@yahoo.com',
       name: data.name,
       contact: data.email,
       subject: '[HR] Vacancy Application: ' + props.localData.id,
