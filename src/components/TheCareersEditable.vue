@@ -8,23 +8,22 @@ import { useGlobalStore } from '@/stores/store';
 const store = useGlobalStore();
 const props = defineProps(['id_position']);
 // Locker start + cookie
-const { cookies } = useCookies();
-const masterkey = 'MegaPari';
-const lockpick = ref(cookies.get('access') || '');
-// const lockpick = ref('MegaPari');
+// const { cookies } = useCookies();
+// const masterkey = 'MegaPari';
+// const lockpick = ref(cookies.get('access') || '');
+// watch(
+//   () => lockpick.value,
+//   (val) => {
+//     if (val == masterkey) {
+//       cookies.set('access', 'MegaPari');
+//     }
+//   }
+// );
+// Locker end
 const displayAdd = ref(false);
-// const displayAdd = ref(true);
 const restore_msg = ref(false);
 const save_msg = ref(false);
-watch(
-  () => lockpick.value,
-  (val) => {
-    if (val == masterkey) {
-      cookies.set('access', 'MegaPari');
-    }
-  }
-);
-// Locker end
+
 const calculateCount = (elId = '') => {
   let counter = 0;
   if (elId !== '') {
@@ -181,12 +180,13 @@ const postData = () => {
 
 <template>
   <!-- if -->
-  <div v-if="lockpick != masterkey" class="career__container">
+  <!-- <div v-if="lockpick != masterkey" class="career__container">
     <div class="key_text">Pass the Key</div>
     <input class="locker" v-model="lockpick" placeholder="Type here . . ." />
-  </div>
+  </div> -->
   <!-- else -->
-  <div v-else class="career__container">
+  <!-- <div v-else class="career__container"> -->
+  <div class="career__container">
     <!-- popup start -->
     <div
       class="container_add"
