@@ -11,7 +11,9 @@ const getData = () => {
     .then((response) => {
       const data = JSON.parse(response);
       store.data = data.payload;
-      console.log('response: ', JSON.parse(response));
+      store.faq = data.faq;
+      // console.log('response: ', JSON.parse(response));
+      console.log('response: SUCCESSFUL');
     })
     .catch((err) => console.log(err));
   // console.log(store.data);

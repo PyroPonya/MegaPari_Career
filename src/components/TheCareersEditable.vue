@@ -130,6 +130,7 @@ const getData = () => {
     .then((response) => {
       const data = JSON.parse(response);
       store.data = data.payload;
+      store.faq = data.faq;
       console.log('response: ', JSON.parse(response));
     })
     .catch((err) => console.log(err));
@@ -151,13 +152,14 @@ const postData = () => {
   const options = {
     method: 'POST',
     headers: myHeaders,
-    body: JSON.stringify({ payload: store.data }),
+    body: JSON.stringify({ payload: store.data, faq: store.faq }),
+    // body: JSON.stringify({ payload: store.data }),
   };
 
-  fetch(
-    'https://pyroproxy.herokuapp.com/https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
-    options
-  );
+  // fetch(
+  //   'https://pyroproxy.herokuapp.com/https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
+  //   options
+  // );
   fetch(
     'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
     options

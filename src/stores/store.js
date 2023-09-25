@@ -384,5 +384,12 @@ export const useGlobalStore = defineStore('Store', () => {
   //   count.value++
   // }
   const data = ref([]);
-  return { data };
+  const faq = ref([
+    // {
+    //   q: 'How is remote work organized at Megapari?',
+    //   a: 'Our employees live in different cities and countries, so we have a distributed team. This means that everyone works remotely from home or from our offices in Ireland, Ukraine, Armenia, Kazakhstan, Cyprus, Serbia, Portugal, or Montenegro. \n\nWe use Slack, Asana, Zoom, and other tools to communicate with one another. On their first day of work, each employee receives all the equipment they need for their job. We also reimburse the cost of office furniture if you choose to work from home. \n\nWe have a flexible work schedule, but we try to hold most meetings between 11 AM and 4 PM (GMT+3).',
+    // open: false,
+    // },
+  ]);
+  return { data, faq };
 });
