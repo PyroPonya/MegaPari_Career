@@ -255,9 +255,9 @@ const throwItOnTheGround = (data) => {
   font-weight: 500;
   line-height: normal;
 }
-textarea {
+/* textarea {
   overflow-y: hidden;
-}
+} */
 .form_terms {
   display: flex;
   flex-direction: row;
@@ -324,5 +324,14 @@ textarea {
 .form_btn-disabled {
   cursor: not-allowed;
   background: rgba(255, 32, 43, 0.4);
+}
+@media (width < 900px) {
+  .form__container {
+    padding: 10px 20px;
+  }
+  .form_row {
+    flex-direction: column;
+    gap: 0px;
+  }
 }
 </style>

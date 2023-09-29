@@ -169,4 +169,22 @@ const goToTest = () => {
   max-width: 1300px;
   width: 100%;
 }
+@media (width < 900px) {
+  .item__container {
+    max-width: 99vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0px;
+  }
+  .item {
+    padding: 0px 10px;
+  }
+  .item .item_title {
+    padding: 10px 5px;
+  }
+  .item .item_btn {
+    margin-bottom: 60px;
+  }
+}
 </style>

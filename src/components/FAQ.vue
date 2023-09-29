@@ -130,6 +130,7 @@ const faqAdd = () => {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-align: left;
 }
 .el_a {
   white-space: pre-line;
