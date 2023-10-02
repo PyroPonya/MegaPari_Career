@@ -280,9 +280,18 @@ const calculateCount = (elId = '') => {
   }
 }
 @media (width < 900px) {
+  .welcome__container {
+    padding: 0px 10px;
+  }
   .welcome__head {
     margin-top: 38px;
     margin-bottom: 26px;
+  }
+  .welcome__head .text_title {
+    font-size: 55px;
+  }
+  .welcome__head .text_content {
+    font-size: 28px;
   }
   .welcome__body {
     gap: 20px;

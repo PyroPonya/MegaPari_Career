@@ -224,4 +224,9 @@ const faqAdd = () => {
   padding-bottom: 5px;
   border: none;
 }
+@media (width < 900px) {
+  .faq_el {
+    padding: 20px 10px;
+  }
+}
 </style>

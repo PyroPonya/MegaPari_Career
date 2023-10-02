@@ -292,6 +292,18 @@ const postData = () => {
         </div>
       </div>
     </div>
+    <div class="controls">
+      <!-- confirm popup start -->
+      <div
+        class="popup locker_popup"
+        :style="{ display: restore_msg || save_msg ? 'flex' : 'none' }"
+      >
+        {{ restore_msg ? 'Save data restored!' : save_msg ? 'Saved successfully!' : '' }}
+      </div>
+      <!-- confirm popup end -->
+      <div class="btn locker" @click="getData()">Dismiss Changes</div>
+      <div class="btn locker" @click="postData()">Save Changes</div>
+    </div>
   </div>
 </template>
 
@@ -468,6 +480,7 @@ const postData = () => {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  width: 100%;
 }
 .container_add {
   position: fixed;
@@ -557,5 +570,24 @@ const postData = () => {
   border: 4px solid #ff202b;
   background: rgb(73, 73, 73);
   width: 100%;
+}
+@media (width < 900px) {
+  .career__container {
+    padding: 60px 10px !important;
+  }
+  .id_el .controls {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  .controls .btn {
+    width: 100%;
+  }
+  .career_id .id_el {
+    padding: 14px 26px;
+  }
 }
 </style>

@@ -329,9 +329,41 @@ const throwItOnTheGround = (data) => {
   .form__container {
     padding: 10px 20px;
   }
+  .form__container input,
+  .form__container textarea {
+    padding: 16px 20px;
+    font-size: 18px;
+  }
   .form_row {
     flex-direction: column;
     gap: 0px;
+  }
+  .form_btn {
+    width: 100%;
+  }
+  .form__container input::-moz-placeholder,
+  .form__container textarea::-moz-placeholder {
+    font-size: 18px;
+  }
+  .form__container input:-moz-placeholder,
+  .form__container textarea:-moz-placeholder {
+    font-size: 18px;
+  }
+  .form__container input:-ms-input-placeholder,
+  .form__container textarea:-ms-input-placeholder {
+    font-size: 18px;
+  }
+  .form__container input::-webkit-input-placeholder,
+  .form__container textarea::-webkit-input-placeholder {
+    font-size: 18px;
+  }
+  .form__container input::placeholder,
+  .form__container textarea::placeholder {
+    font-size: 18px;
+  }
+  .form__container input:placeholder,
+  .form__container textarea:placeholder {
+    font-size: 18px;
   }
 }
 </style>

@@ -186,5 +186,8 @@ const goToTest = () => {
   .item .item_btn {
     margin-bottom: 60px;
   }
+  .item .item_desc {
+    text-align: justify;
+  }
 }
 </style>
