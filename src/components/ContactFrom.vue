@@ -18,6 +18,7 @@ const localBlob = ref({
 const fieldValidation = ref({
   name: '',
   email: '',
+  info: '',
   country: '',
   message: '',
 });
@@ -60,11 +61,7 @@ const throwItOnTheGround = (data) => {
       contact: data.email,
       subject: '[HR] Vacancy Application: ' + props.localData.id,
       company: 'Location: ' + data.country,
-      message:
-        '<i>Additional contact information: </i>' +
-        data.info +
-        '</p><br></p>' +
-        data.message,
+      message: '<i>Telegram nickname: </i>' + data.info + '</p><br></p>' + data.message,
     };
 
     const myHeaders = new Headers();
@@ -124,8 +121,8 @@ const throwItOnTheGround = (data) => {
       />
       <input
         type="text"
-        class="form_info"
-        placeholder="Additional contact information"
+        :class="[fieldValidation.info == 'false' ? 'error' : '', 'form_info']"
+        placeholder="Telegram nickname*"
         v-model="localBlob.info"
       />
     </div>
