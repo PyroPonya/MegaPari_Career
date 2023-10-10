@@ -7,6 +7,50 @@ const terms_validation = ref(true);
 const request_succ = ref(false);
 const btnDisabled = ref(true);
 
+// File transfer start
+const file = ref();
+const fileName = ref('');
+const fileData = ref('');
+
+const toBase64 = (c_file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    // console.log(file.value);
+    reader.readAsDataURL(c_file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+
+// var file = document.querySelector('#files > input[type="file"]').files[0];
+const removeAttachment = () => {
+  file.value = '';
+  fileName.value = '';
+};
+
+const handleFileUpload = async () => {
+  // debugger;
+  // console.log('selected file', file.value.files[0]);
+  // console.log(await toBase64(file.value.files[0]));
+
+  fileName.value = file.value.files[0].name;
+  fileData.value = await toBase64(file.value.files[0]);
+
+  const type = fileData.value.split(';')[0].split('/')[1];
+  // console.log(type);
+  // const mimeType = fileData.value.match(/^data:(.+);base64/)?.[1];
+
+  // await fetch(await toBase64(file.value.files[0]))
+  //   .then((res) => res.blob())
+  //   .then((blob) => {
+  //     console.log(blob);
+  //     const file = new File([blob], 'Attachment', { type: mimeType });
+  //     console.log(file);
+  //   });
+
+  //Upload to server
+};
+// File transfer end
+
 const localBlob = ref({
   name: '',
   email: '',
@@ -62,7 +106,10 @@ const throwItOnTheGround = (data) => {
       subject: '[HR] Vacancy Application: ' + props.localData.id,
       company: 'Location: ' + data.country,
       message: '<i>Telegram nickname: </i>' + data.info + '</p><br></p>' + data.message,
+      file: fileData.value || '',
     };
+
+    // console.log(dataBlob);
 
     const myHeaders = new Headers();
     myHeaders.append('accept', 'application/json');
@@ -96,6 +143,7 @@ const throwItOnTheGround = (data) => {
     };
     terms.value = false;
     terms_validation.value = true;
+    removeAttachment();
   } else {
     console.log('=ABORTED=');
     return false;
@@ -137,6 +185,22 @@ const throwItOnTheGround = (data) => {
       placeholder="Briefly tell us about yourself or provide links to your portfolio / code repository"
       v-model="localBlob.message"
     ></textarea>
+    <!-- dnd start -->
+    <div class="dnd">
+      <div class="dnd_content">
+        <input ref="file" v-on:change="handleFileUpload()" type="file" />
+        <div class="dnd_img"></div>
+        <img src="./icons/paperclip.svg" alt="paperclip" height="28" width="28" />
+        <div class="dnd_text">
+          Attach a cover letter, resume, or portfolio (up to 10 MB)
+        </div>
+      </div>
+      <div v-if="fileName != ''" class="attchment_list" @click="removeAttachment()">
+        [X] {{ fileName }}
+      </div>
+    </div>
+    <!-- <input ref="file" v-on:change="handleFileUpload()" type="file" /> -->
+    <!-- dnd end -->
     <div class="form_terms">
       <div
         :class="[terms_validation ? '' : 'terms_box-error', 'terms_box']"
@@ -321,6 +385,64 @@ const throwItOnTheGround = (data) => {
 .form_btn-disabled {
   cursor: not-allowed;
   background: rgba(255, 32, 43, 0.4);
+}
+.dnd {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px dashed #a7a7a7;
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+}
+.dnd:hover {
+  border-color: green;
+}
+.dnd_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+}
+.dnd_text {
+  color: #a7a7a7;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.attchment_list {
+  z-index: 10;
+  padding-top: 15px;
+}
+.attchment_list:hover {
+  cursor: pointer;
+  color: #ff202b;
+}
+input[type='file'] {
+  position: absolute;
+  padding: 0;
+  /* top: -50%; */
+  top: 0%;
+  right: 0px; /* not left, because only the right part of the input seems to
+                 be clickable in some browser I can't remember */
+  margin-bottom: 0;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(
+    opacity=0
+  ); /* and all the other old opacity stuff you
+                                 want to support */
+  font-size: 300px; /* wtf, but apparently the most reliable way to make
+                         a large part of the input clickable in most browsers */
+  /* height: 200px; */
+  height: 106%;
 }
 @media (width < 900px) {
   .form__container {
