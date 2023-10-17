@@ -501,6 +501,8 @@ const postData = () => {
   min-height: 50vh;
   /* z-index: 10; */
   /* top: 10%; */
+  overflow-y: auto;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 25px;
