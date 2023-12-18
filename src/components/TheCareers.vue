@@ -42,6 +42,15 @@ const filterDisplay = (filterId = '') => {
       >
         {{ el.id }} {{ calculateCount(el.id) == 0 ? '' : calculateCount(el.id) }}
       </RouterLink>
+      <!-- <RouterLink
+        :to="'/careers/' + el.id"
+        :id_position="el.id"
+        :class="[props.id_position == el.id ? 'list_el-active' : '', 'list_el']"
+        v-for="el in store.data"
+        :style="{ display: calculateCount(el.id) == 0 ? 'none' : 'flex' }"
+      >
+        {{ el.id }} {{ calculateCount(el.id) == 0 ? '' : calculateCount(el.id) }}
+      </RouterLink> -->
     </div>
     <div
       class="career_id"
