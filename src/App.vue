@@ -3,9 +3,30 @@ import { RouterLink, RouterView } from 'vue-router';
 import MegapariLogo from './assets/LOGO_MEGAPARI.svg';
 import { useGlobalStore } from '@/stores/store';
 const store = useGlobalStore();
+
+// Api_Key = 0d3cfbdb-bd33-4644-8360-beba5dfa32f2
+// GET || PUT = https://api.jsonstorage.net/v1/json/e2efe603-ab71-4699-91d6-fff297c37cbc/834911cc-22aa-42bd-941a-5be549af8fc5?apiKey=%your api key%
+// old
+// const getData = () => {
+//   fetch(
+//     'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs'
+//   )
+//     .then((response) => response.text())
+//     .then((response) => {
+//       const data = JSON.parse(response);
+//       store.data = data.payload;
+//       store.faq = data.faq;
+//       // console.log('response: ', JSON.parse(response));
+//       console.log('response: SUCCESSFUL');
+//     })
+//     .catch((err) => console.log(err));
+//   // console.log(store.data);
+//   return true;
+// };
+// new
 const getData = () => {
   fetch(
-    'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs'
+    'https://api.jsonstorage.net/v1/json/e2efe603-ab71-4699-91d6-fff297c37cbc/834911cc-22aa-42bd-941a-5be549af8fc5?apiKey=0d3cfbdb-bd33-4644-8360-beba5dfa32f2'
   )
     .then((response) => response.text())
     .then((response) => {
@@ -19,6 +40,7 @@ const getData = () => {
   // console.log(store.data);
   return true;
 };
+
 getData();
 </script>
 

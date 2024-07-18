@@ -121,9 +121,28 @@ const removeEl = (side, position) => {
   });
 };
 // remote data store management start
+// const getData = () => {
+//   fetch(
+//     'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs'
+//   )
+//     .then((response) => response.text())
+//     .then((response) => {
+//       const data = JSON.parse(response);
+//       store.data = data.payload;
+//       store.faq = data.faq;
+//       console.log('response: ', JSON.parse(response));
+//     })
+//     .catch((err) => console.log(err));
+//   // console.log(store.data);
+//   restore_msg.value = true;
+//   setTimeout(() => {
+//     restore_msg.value = false;
+//   }, 3000);
+//   return true;
+// };
 const getData = () => {
   fetch(
-    'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs'
+    'https://api.jsonstorage.net/v1/json/e2efe603-ab71-4699-91d6-fff297c37cbc/834911cc-22aa-42bd-941a-5be549af8fc5?apiKey=0d3cfbdb-bd33-4644-8360-beba5dfa32f2'
   )
     .then((response) => response.text())
     .then((response) => {
@@ -131,13 +150,10 @@ const getData = () => {
       store.data = data.payload;
       store.faq = data.faq;
       console.log('response: ', JSON.parse(response));
+      // console.log('response: SUCCESSFUL');
     })
     .catch((err) => console.log(err));
   // console.log(store.data);
-  restore_msg.value = true;
-  setTimeout(() => {
-    restore_msg.value = false;
-  }, 3000);
   return true;
 };
 
@@ -148,8 +164,28 @@ const postData = () => {
   myHeaders.append('X-Client-Ip', 'any');
   myHeaders.append('X-Visitor-Id', 'dont_care');
 
+  // const options = {
+  //   method: 'POST',
+  //   headers: myHeaders,
+  //   body: JSON.stringify({ payload: store.data, faq: store.faq }),
+  //   // body: JSON.stringify({ payload: store.data }),
+  // };
+
+  // // fetch(
+  // //   'https://pyroproxy.herokuapp.com/https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
+  // //   options
+  // // );
+  // fetch(
+  //   'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
+  //   options
+  // )
+  //   .then((response) => response.text())
+  //   .then((response) => {
+  //     console.log('response: ' + response);
+  //   })
+  //   .catch((err) => console.log(err));
   const options = {
-    method: 'POST',
+    method: 'PUT',
     headers: myHeaders,
     body: JSON.stringify({ payload: store.data, faq: store.faq }),
     // body: JSON.stringify({ payload: store.data }),
@@ -160,7 +196,7 @@ const postData = () => {
   //   options
   // );
   fetch(
-    'https://getpantry.cloud/apiv1/pantry/a7740feb-4ea3-4c41-9f34-9f68ca6b3bb8/basket/MegaPari_Jobs',
+    'https://api.jsonstorage.net/v1/json/e2efe603-ab71-4699-91d6-fff297c37cbc/834911cc-22aa-42bd-941a-5be549af8fc5?apiKey=0d3cfbdb-bd33-4644-8360-beba5dfa32f2',
     options
   )
     .then((response) => response.text())
